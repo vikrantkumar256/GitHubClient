@@ -61,8 +61,16 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    //hilt for di
     implementation(libs.hilt)
     kapt(libs.hiltCompiler)
+
+    // Retrofit
+    implementation(libs.retrofit)
+    // Retrofit with Gson Converter (for handling complex JSON responses)
+    implementation(libs.retrofitGson)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
