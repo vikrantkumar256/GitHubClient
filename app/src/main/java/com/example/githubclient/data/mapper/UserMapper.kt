@@ -10,6 +10,8 @@ class UserMapper @Inject constructor() {
             id = dto.id,
             login = dto.login,
             avatarUrl = dto.avatarUrl,
+            siteAdmin = dto.siteAdmin,
+            type = dto.type
         )
     }
 }

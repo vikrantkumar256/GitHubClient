@@ -8,9 +8,7 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(private val api: GitHubApiService, private val mapper: UserMapper) : UserRepository {
     override suspend fun getUsers(): List<User> {
-        println("before tabahi")
         val usersDto = api.getUsers()
-        println("what is going on $usersDto?.[0]")
         return usersDto.map { mapper.toDomain(it) }
     }
 }

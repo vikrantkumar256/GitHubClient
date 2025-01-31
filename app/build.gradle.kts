@@ -74,6 +74,10 @@ dependencies {
     // Retrofit with Gson Converter (for handling complex JSON responses)
     implementation(libs.retrofitGson)
 
+    // coil for image loading
+    implementation(libs.coilCompose)
+    implementation(libs.coilNetwork)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

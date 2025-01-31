@@ -2,8 +2,8 @@ package com.example.githubclient.ui.userlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.githubclient.domain.model.User
 import com.example.githubclient.domain.repository.UserRepository
+import com.example.githubclient.ui.userlist.state.UserListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,11 +12,6 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-sealed class UserListState {
-    data object Loading : UserListState()
-    data class Success(val users: List<User>) : UserListState()
-    data class Error(val message: String) : UserListState()
-}
 
 @HiltViewModel
 class UserListViewModel @Inject constructor( private val userRepository: UserRepository) : ViewModel() {
@@ -28,7 +23,7 @@ class UserListViewModel @Inject constructor( private val userRepository: UserRep
         loadUsers()
     }
 
-    private fun loadUsers(){
+    fun loadUsers(){
         viewModelScope.launch {
             _uiState.value = UserListState.Loading
             try {
