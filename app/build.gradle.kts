@@ -66,6 +66,9 @@ dependencies {
     implementation(libs.hilt)
     kapt(libs.hiltCompiler)
 
+    //hilt compose integration
+    implementation(libs.hiltNavigationCompose)
+
     // Retrofit
     implementation(libs.retrofit)
     // Retrofit with Gson Converter (for handling complex JSON responses)
