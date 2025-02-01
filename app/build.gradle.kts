@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 android {
@@ -77,6 +78,13 @@ dependencies {
     // coil for image loading
     implementation(libs.coilCompose)
     implementation(libs.coilNetwork)
+
+    //navigation compose integration
+    implementation(libs.navCompose)
+
+    // JSON serialization library, works with the Kotlin serialization plugin
+    implementation(libs.kotlinSerialization)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

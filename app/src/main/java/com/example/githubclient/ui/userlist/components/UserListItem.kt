@@ -12,9 +12,9 @@ import coil3.compose.AsyncImage
 import com.example.githubclient.domain.model.User
 
 @Composable
-fun UserListItem(user: User) {
+fun UserListItem(user: User, onClick: (String) -> Unit) {
     Card(
-        onClick = { /* Navigate to detail */ },
+        onClick = { onClick(user.login)},
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     ) {
         Row(Modifier.padding(16.dp)) {
@@ -26,7 +26,7 @@ fun UserListItem(user: User) {
                     .clip(CircleShape)
             )
 
-            Spacer(modifier = Modifier.width(12.dp)) // Improved spacing
+            Spacer(modifier = Modifier.width(12.dp))
 
             Column(Modifier.weight(1f)) {
                 Text(user.login, style = MaterialTheme.typography.titleMedium)
@@ -37,8 +37,11 @@ fun UserListItem(user: User) {
                             modifier = Modifier.padding(end = 8.dp),
                             content = { Text(text = "STAFF", style = MaterialTheme.typography.labelMedium) }
                         )
+                        Text("GitHub Team", color = MaterialTheme.colorScheme.outline)
                     }
-                    Text(user.type, color = MaterialTheme.colorScheme.outline)
+                    else{
+                        Text(user.type, color = MaterialTheme.colorScheme.outline)
+                    }
                 }
             }
         }

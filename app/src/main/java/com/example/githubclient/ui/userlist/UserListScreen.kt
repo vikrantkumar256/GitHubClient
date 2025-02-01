@@ -13,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
+import androidx.navigation.NavController
 import com.example.githubclient.ui.common.ErrorScreen
 import com.example.githubclient.ui.common.LoadingScreen
 import com.example.githubclient.ui.userlist.components.UserList
@@ -20,7 +21,7 @@ import com.example.githubclient.ui.userlist.state.UserListState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun UserListScreen(viewModel: UserListViewModel = hiltViewModel()) {
+fun UserListScreen(viewModel: UserListViewModel = hiltViewModel(), onUserClick: (String) -> Unit) {
 
     val uiState by viewModel.uiState.collectAsState()
 
@@ -42,7 +43,7 @@ fun UserListScreen(viewModel: UserListViewModel = hiltViewModel()) {
                 is UserListState.Loading -> {
                     LoadingScreen()
                 }
-                is UserListState.Success -> UserList(users = (uiState as UserListState.Success).users)
+                is UserListState.Success -> UserList(users = (uiState as UserListState.Success).users, onUserClick = onUserClick)
                 is UserListState.Error -> {
                     ErrorScreen(
                         message = (uiState as UserListState.Error).message,

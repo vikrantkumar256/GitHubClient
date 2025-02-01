@@ -12,6 +12,8 @@ hilt = "2.51.1"
 retrofit = "2.9.0"
 hiltNavigationCompose = "1.2.0"
 coil = "3.0.4"
+navCompose = "2.8.6"
+kotlinSerialization = "1.6.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,6 +37,8 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 retrofitGson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 coilCompose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil"}
 coilNetwork = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
+navCompose = { module = "androidx.navigation:navigation-compose", version.ref = "navCompose" }
+kotlinSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerialization" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
