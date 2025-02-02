@@ -14,6 +14,7 @@ hiltNavigationCompose = "1.2.0"
 coil = "3.0.4"
 navCompose = "2.8.6"
 kotlinSerialization = "1.6.3"
+materialIcons = "1.5.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -39,6 +40,7 @@ coilCompose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil"}
 coilNetwork = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
 navCompose = { module = "androidx.navigation:navigation-compose", version.ref = "navCompose" }
 kotlinSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerialization" }
+materialIcons = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIcons" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

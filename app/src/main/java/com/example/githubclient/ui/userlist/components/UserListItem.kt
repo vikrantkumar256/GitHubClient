@@ -1,7 +1,10 @@
 package com.example.githubclient.ui.userlist.components
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,22 +17,31 @@ import com.example.githubclient.domain.model.User
 @Composable
 fun UserListItem(user: User, onClick: (String) -> Unit) {
     Card(
-        onClick = { onClick(user.login)},
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        onClick = { onClick(user.userName) },
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        elevation = CardDefaults.elevatedCardElevation(4.dp),
+        modifier = Modifier.padding(8.dp)
     ) {
-        Row(Modifier.padding(16.dp)) {
+        Row(
+            Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             AsyncImage(
                 model = user.avatarUrl,
                 contentDescription = "Profile",
                 modifier = Modifier
-                    .size(56.dp)
+                    .size(64.dp)
                     .clip(CircleShape)
+                    .border(BorderStroke(2.dp, MaterialTheme.colorScheme.primary), CircleShape)
             )
 
             Spacer(modifier = Modifier.width(12.dp))
 
             Column(Modifier.weight(1f)) {
-                Text(user.login, style = MaterialTheme.typography.titleMedium)
+                Text(user.userName, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     if (user.siteAdmin) {
@@ -38,8 +50,7 @@ fun UserListItem(user: User, onClick: (String) -> Unit) {
                             content = { Text(text = "STAFF", style = MaterialTheme.typography.labelMedium) }
                         )
                         Text("GitHub Team", color = MaterialTheme.colorScheme.outline)
-                    }
-                    else{
+                    } else {
                         Text(user.type, color = MaterialTheme.colorScheme.outline)
                     }
                 }

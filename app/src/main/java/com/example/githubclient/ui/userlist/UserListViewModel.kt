@@ -2,6 +2,7 @@ package com.example.githubclient.ui.userlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.githubclient.domain.model.User
 import com.example.githubclient.domain.repository.UserRepository
 import com.example.githubclient.ui.userlist.state.UserListState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,7 +33,7 @@ class UserListViewModel @Inject constructor( private val userRepository: UserRep
             }
             catch (e: Exception)
             {
-                _uiState.value = UserListState.Error(message = e.message ?: "Unknown error occured")
+                _uiState.value = UserListState.Error(message = e.message ?: "Unknown error occurred")
             }
         }
     }

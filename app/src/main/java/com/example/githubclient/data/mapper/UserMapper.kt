@@ -8,7 +8,7 @@ class UserMapper @Inject constructor() {
     fun toDomain(dto: UserDto): User {
         return User(
             id = dto.id,
-            login = dto.login,
+            userName = dto.userName,
             avatarUrl = dto.avatarUrl,
             siteAdmin = dto.siteAdmin,
             type = dto.type

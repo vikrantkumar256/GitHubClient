@@ -85,6 +85,7 @@ dependencies {
     // JSON serialization library, works with the Kotlin serialization plugin
     implementation(libs.kotlinSerialization)
 
+    implementation(libs.materialIcons)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
