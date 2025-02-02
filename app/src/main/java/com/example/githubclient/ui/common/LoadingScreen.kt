@@ -7,7 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
-// Loading/Error UI components
+/**
+ * A reusable loading screen with a
+ * centered CircularProgressIndicator.
+ **/
 @Composable
 fun LoadingScreen() {
     Box(

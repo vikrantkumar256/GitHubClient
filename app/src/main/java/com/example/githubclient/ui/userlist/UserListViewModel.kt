@@ -15,21 +15,24 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserListViewModel @Inject constructor( private val userRepository: UserRepository) : ViewModel() {
-    private val startId = 0
-    private val usersDisplayedPerPage = 10
-    val usersFetchLimit = 100
+    private val startId = 0 //starting index for fetching github user
+    private val usersDisplayedPerPage = 10 // Number of users to display per page
+    val usersFetchLimit = 100 // Maximum limit for fetching users to fetch
 
     // StateFlow to manage users list state
     private val _uiState = MutableStateFlow<UserListState>(UserListState.Loading)
     val uiState : StateFlow<UserListState> = _uiState.asStateFlow()
 
+    // StateFlow to manage the total number of users displayed
     private val _totalUserDisplayed = MutableStateFlow(usersDisplayedPerPage)
     val totalUserDisplayed: StateFlow<Int> = _totalUserDisplayed.asStateFlow()
 
     init {
+        // Load users when the ViewModel is initialized
         loadUsers()
     }
 
+    // function to load intial list of users
     fun loadUsers(){
         viewModelScope.launch {
             _uiState.value = UserListState.Loading
@@ -39,12 +42,14 @@ class UserListViewModel @Inject constructor( private val userRepository: UserRep
             }
             catch (e: Exception)
             {
+                // Handle any errors and update the state with an error message
                 _uiState.value = UserListState.Error(message = e.message ?: "Unknown error occurred")
             }
         }
     }
 
     fun loadMoreUsers(){
+        // Increase the number of users displayed
         _totalUserDisplayed.value += usersDisplayedPerPage;
     }
 }

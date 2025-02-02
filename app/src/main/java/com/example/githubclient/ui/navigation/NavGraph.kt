@@ -11,23 +11,27 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-object UserListRoute
+object UserListRoute // represent the route for user list screen
 
 @Serializable
-data class UserDetailRoute(val userName: String)
+data class UserDetailRoute(val userName: String) // represent the route for user detail screen
 
 @Composable
 fun AppNavGraph() {
     val navController = rememberNavController()
 
+    // Set up the navigation host with routes and screen composables
     NavHost(navController = navController, startDestination = UserListRoute)
     {
+        // Navigate to UserDetailScreen when a user is clicked from the UserListScreen
         composable<UserListRoute> {
             UserListScreen(
                 onUserClick = {userName -> navController.navigate(UserDetailRoute(userName))}
             )
         }
 
+        // For the UserDetailScreen route,
+        // extract the userName parameter and display the UserDetailScreen
         composable<UserDetailRoute> {
             backStackEntry ->
             val route = backStackEntry.toRoute<UserDetailRoute>()

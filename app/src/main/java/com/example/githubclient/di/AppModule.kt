@@ -9,12 +9,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-
+/**
+ * Dagger module for providing application-level dependencies.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
     private const val BASE_URL = "https://api.github.com/"
 
+    // Provide a singleton instance of Retrofit for API calls.
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {
@@ -24,6 +27,7 @@ object AppModule {
             .build()
     }
 
+    // Provide a singleton instance of GitHubApiService.
     @Provides
     @Singleton
     fun provideGitHubApiService(retrofit: Retrofit): GitHubApiService {

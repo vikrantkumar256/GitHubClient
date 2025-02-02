@@ -21,6 +21,10 @@ import coil3.compose.AsyncImage
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
+/**
+ * Displays the user's profile header with avatar,
+ * name, username, and join date.
+ */
 @Composable
 fun UserDetailHeader(
     avatarUrl: String,
@@ -28,6 +32,7 @@ fun UserDetailHeader(
     userName: String,
     createdAt: String,
 ) {
+    // parse and format the creation date
     val formattedDate = try {
         val zonedDateTime = ZonedDateTime.parse(createdAt)
         zonedDateTime.format(DateTimeFormatter.ofPattern("MMM dd, yyyy"))
@@ -39,6 +44,8 @@ fun UserDetailHeader(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth()
     ) {
+
+        //display user avatar
         AsyncImage(
             model = avatarUrl,
             contentDescription = "User Avatar",
@@ -48,6 +55,8 @@ fun UserDetailHeader(
                 .clip(CircleShape)
         )
         Spacer(modifier = Modifier.width(16.dp))
+
+        //display name, userName, joinedDate
         Column(verticalArrangement = Arrangement.SpaceEvenly) {
             Text(
                 text = name ?: userName,

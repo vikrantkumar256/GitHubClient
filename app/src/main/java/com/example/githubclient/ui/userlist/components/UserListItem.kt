@@ -15,12 +15,20 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.example.githubclient.domain.model.User
 
+/*
+ * UserListItem Composable:
+ * Displays a single user's details- avatar, username, and user type or staff badge.
+ * Includes a "Load More" button when it's the last item in the list and more items are available.
+ * Handles user item clicks and "Load More" button interactions.
+ */
 @Composable
 fun UserListItem(user: User, onClick: (String) -> Unit, isLastItem: Boolean, onLoadMoreClick: () -> Unit, showLoadMore: Boolean) {
+
+    // Card representing the individual user item, with rounded corners and elevation
     Card(
         onClick = { onClick(user.userName) },
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(Color(0xFFFFFFFF)),
+        colors = CardDefaults.cardColors(Color.White),
         elevation = CardDefaults.elevatedCardElevation(4.dp),
         modifier = Modifier.padding(8.dp)
     ) {
@@ -30,6 +38,7 @@ fun UserListItem(user: User, onClick: (String) -> Unit, isLastItem: Boolean, onL
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            // AsyncImage to load user's avatar in a circular shape with a border
             AsyncImage(
                 model = user.avatarUrl,
                 contentDescription = "Profile",
@@ -44,6 +53,7 @@ fun UserListItem(user: User, onClick: (String) -> Unit, isLastItem: Boolean, onL
             Column(Modifier.weight(1f)) {
                 Text(user.userName, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurface)
 
+                // Row layout to display either staff badge or user type
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     if (user.siteAdmin) {
                         Badge(
@@ -58,6 +68,8 @@ fun UserListItem(user: User, onClick: (String) -> Unit, isLastItem: Boolean, onL
             }
         }
     }
+
+    // If it's the last item but showLoadMore is true, show the "Load More" button
     if(isLastItem && showLoadMore)
     {
         Button(onClick = onLoadMoreClick, modifier = Modifier.padding(8.dp)) {

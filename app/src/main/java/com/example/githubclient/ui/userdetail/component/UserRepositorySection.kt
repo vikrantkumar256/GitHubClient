@@ -21,6 +21,10 @@ import com.example.githubclient.R
 import com.example.githubclient.domain.model.Repo
 import com.example.githubclient.util.getLanguageColor
 
+/**
+ * Displays the list of top repositories with details such as the repository name, description, language, stars, and forks.
+ * Each repository item is clickable and opens the repository URL in a browser.
+ */
 @Composable
 fun UserRepositorySection(repos: List<Repo>) {
     Text(
@@ -38,6 +42,10 @@ fun UserRepositorySection(repos: List<Repo>) {
     }
 }
 
+/**
+ * Displays an individual repository item with its name, description, language, stars, and forks.
+ * The repository name is clickable and opens the repository in a browser.
+ */
 @Composable
 fun RepositoryItem(repo: Repo) {
     val context = LocalContext.current

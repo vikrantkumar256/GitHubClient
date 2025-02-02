@@ -2,6 +2,10 @@ package com.example.githubclient.data.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Data Transfer Object for GitHub user details,
+ * used for serializing/deserializing JSON data.
+ */
 data class UserDetailDto(
     @SerializedName("login") val userName: String,
     @SerializedName("name") val name: String?,

@@ -1,5 +1,6 @@
 package com.example.githubclient.domain.model
 
+// Represents detailed information about a GitHub user
 data class UserDetail(
     val userName: String,
     val name: String?,

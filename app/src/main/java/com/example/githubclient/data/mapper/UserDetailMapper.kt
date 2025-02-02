@@ -4,6 +4,10 @@ import com.example.githubclient.data.model.UserDetailDto
 import com.example.githubclient.domain.model.UserDetail
 import javax.inject.Inject
 
+/**
+* This class is responsible for converting a UserDetailDto object
+* to a UserDetail domain model object.
+*/
 class UserDetailMapper @Inject constructor() {
     fun toDomain(dto: UserDetailDto): UserDetail {
         return UserDetail(

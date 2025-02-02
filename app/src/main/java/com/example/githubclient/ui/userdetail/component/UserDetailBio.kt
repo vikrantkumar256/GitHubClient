@@ -9,6 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
+/**
+ * Displays the user's bio in a box. If the bio is not empty, it shows the bio text with a limit of 3 lines,
+ * truncating with an ellipsis if it's too long. If the bio is empty or null, it displays a default message.
+ */
 @Composable
 fun UserDetailBio(bio: String?) {
     Box(modifier = Modifier.padding(0.dp, 32.dp)) {

@@ -17,12 +17,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
+/**
+ * Displays additional user information such as location,
+ * company, and blog with corresponding icons.
+ * If data is unavailable, default messages are shown.
+ */
 @Composable
 fun UserDetailAdditionalInfo(
     location: String?,
     company: String?,
     blog: String?,
 ) {
+    // Column layout with padding for displaying user info
     Column(modifier = Modifier.padding(16.dp)) {
         UserInfoItem(icon = Icons.Filled.LocationOn, text = location ?: "Not Available")
         UserInfoItem(icon = Icons.Filled.Link, text = blog ?: "github.blog")
@@ -30,6 +36,9 @@ fun UserDetailAdditionalInfo(
     }
 }
 
+/**
+ * Displays an icon with accompanying text.
+ */
 @Composable
 fun UserInfoItem(icon: ImageVector, text: String) {
     Row(modifier = Modifier.padding(vertical = 4.dp)) {

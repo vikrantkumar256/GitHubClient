@@ -18,6 +18,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+/**
+ * Displays user statistics such as public repositories, followers, and following in a card layout.
+ * Each stat is shown with a label and corresponding value in a horizontal row.
+ */
 @Composable
 fun UserDetailStats(
     publicRepos: Int,
@@ -34,6 +38,7 @@ fun UserDetailStats(
                 .padding(16.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
+            // Display stats for Repos, Followers, and Following
             StatItem(label = "Repos", value = publicRepos)
             StatItem(label = "Followers", value = followers)
             StatItem(label = "Following", value = following)
@@ -41,6 +46,9 @@ fun UserDetailStats(
     }
 }
 
+/**
+ * Displays a single statistic item with a label and its corresponding value.
+ */
 @Composable
 fun StatItem(label: String, value: Int) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {

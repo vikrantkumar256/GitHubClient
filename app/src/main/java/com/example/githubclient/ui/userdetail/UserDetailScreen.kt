@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.githubclient.ui.common.ErrorScreen
 import com.example.githubclient.ui.common.LoadingScreen
+import com.example.githubclient.ui.theme.LightBlueGray
 import com.example.githubclient.ui.userdetail.component.UserDetailAdditionalInfo
 import com.example.githubclient.ui.userdetail.component.UserDetailBio
 import com.example.githubclient.ui.userdetail.component.UserDetailHeader
@@ -39,12 +40,24 @@ import com.example.githubclient.ui.userdetail.component.UserDetailStats
 import com.example.githubclient.ui.userdetail.state.UserDetailState
 import com.example.githubclient.ui.userdetail.state.UserReposState
 
+
+/**
+ * Displays detailed information about a user including:
+ * - User header with avatar, name, and username
+ * - Bio, statistics (repositories, followers, following)
+ * - Additional info like location, company, and blog
+ * - A list of top repositories
+ * Handles loading, success, and error states for fetching user details and repositories.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UserDetailScreen(viewModel: UserDetailViewModel = hiltViewModel(), userName: String, onBack: () -> Unit) {
+
+    // Observe the states for user detail and repositories from the view model
     val uiDetailState by viewModel.uiDetailState.collectAsState()
     val uiReposState by viewModel.uiReposState.collectAsState()
 
+    // Scaffold to set up the screen structure with top bar
     Scaffold(
         topBar = {
             TopAppBar(
@@ -56,7 +69,7 @@ fun UserDetailScreen(viewModel: UserDetailViewModel = hiltViewModel(), userName:
                 modifier = Modifier.background(MaterialTheme.colorScheme.primary),
                 navigationIcon = {
                     IconButton(
-                        onClick = onBack,
+                        onClick = onBack, // Handle back action
                         ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
@@ -67,22 +80,24 @@ fun UserDetailScreen(viewModel: UserDetailViewModel = hiltViewModel(), userName:
                 }
             )
         },
-        containerColor = Color(0xFFE8EAF6)
+        containerColor = LightBlueGray
     ) {
         innerPadding ->
         Box(modifier =
         Modifier.padding(innerPadding)
         ) {
+            // Handle different states of the user details and repositories
             when (uiDetailState) {
                 is UserDetailState.Loading -> LoadingScreen()
                 is UserDetailState.Success -> {
                     val userDetail = (uiDetailState as UserDetailState.Success).userDetail
 
+                    // Card to display user details
                     Card (
                         elevation = CardDefaults.cardElevation(4.dp),
                         shape = RoundedCornerShape(12.dp),
                         modifier = Modifier.padding(12.dp),
-                        colors = CardDefaults.cardColors(Color(0xFFFFFFFF))
+                        colors = CardDefaults.cardColors(Color.White)
                     ) {
 
                         Column(
@@ -119,6 +134,7 @@ fun UserDetailScreen(viewModel: UserDetailViewModel = hiltViewModel(), userName:
 
                             HorizontalDivider()
 
+                            // Display the repositories section if user repos state is successful
                             if(uiReposState is UserReposState.Success) {
                                 val userRepos = (uiReposState as UserReposState.Success).repos
                                 UserRepositorySection(repos = userRepos)
@@ -127,7 +143,9 @@ fun UserDetailScreen(viewModel: UserDetailViewModel = hiltViewModel(), userName:
                     }
                 }
                 is UserDetailState.Error -> {
+                    // Show error screen if there was an issue fetching user details
                     ErrorScreen(message = (uiDetailState as UserDetailState.Error).message) {
+                        // Retry fetching user details and repositories on error
                         viewModel.fetchUserDetail()
                         viewModel.fetchUserRepos()
                     }

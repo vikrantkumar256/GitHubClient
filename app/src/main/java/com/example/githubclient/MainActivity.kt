@@ -16,6 +16,10 @@ import com.example.githubclient.ui.theme.GitHubClientTheme
 import com.example.githubclient.ui.userlist.UserListScreen
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * The main entry point of the application.
+ * Sets up the theme and navigation using Jetpack Compose.
+ */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
