@@ -1,6 +1,7 @@
 package com.example.githubclient.ui.userdetail
 
 import UserRepositorySection
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -47,14 +48,21 @@ fun UserDetailScreen(viewModel: UserDetailViewModel = hiltViewModel(), userName:
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(userName) },
+                title = { Text(userName, style = MaterialTheme.typography.titleLarge) },
                 colors = topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
+                    containerColor = Color.Transparent,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary
                 ),
+                modifier = Modifier.background(MaterialTheme.colorScheme.primary),
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(imageVector = Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = "Back")
+                    IconButton(
+                        onClick = onBack,
+                        ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
+                            contentDescription = "Back",
+                            tint = Color.White
+                        )
                     }
                 }
             )

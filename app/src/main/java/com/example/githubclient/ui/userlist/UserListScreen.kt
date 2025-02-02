@@ -6,7 +6,6 @@ import androidx.compose.material3.*
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.githubclient.ui.common.ErrorScreen
@@ -31,18 +30,16 @@ fun UserListScreen(viewModel: UserListViewModel = hiltViewModel(), onUserClick: 
                 title = { Text("GitHub Users", style = MaterialTheme.typography.titleLarge) },
                 modifier = Modifier
                     .background(
-                        Brush.horizontalGradient(
-                            listOf(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.secondary)
-                        )
-                    )
+                        MaterialTheme.colorScheme.primary
+                    ),
             )
-        }
+        },
+        containerColor = Color(0xFFE8EAF6)
     ) { innerPadding ->
         Box(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.surfaceVariant)
         ) {
             when (uiState) {
                 is UserListState.Loading -> LoadingScreen()

@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.example.githubclient.domain.model.User
@@ -19,7 +20,7 @@ fun UserListItem(user: User, onClick: (String) -> Unit, isLastItem: Boolean, onL
     Card(
         onClick = { onClick(user.userName) },
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        colors = CardDefaults.cardColors(Color(0xFFFFFFFF)),
         elevation = CardDefaults.elevatedCardElevation(4.dp),
         modifier = Modifier.padding(8.dp)
     ) {
