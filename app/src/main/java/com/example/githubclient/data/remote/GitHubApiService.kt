@@ -5,11 +5,15 @@ import com.example.githubclient.data.model.UserDetailDto
 import com.example.githubclient.data.model.UserDto
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface GitHubApiService {
 
     @GET("users")
-    suspend fun getUsers() : List<UserDto>
+    suspend fun getUsers(
+        @Query("since") startId: Int,
+        @Query("per_page") perPage: Int
+    ) : List<UserDto>
 
     @GET("users/{userName}")
     suspend fun getUserDetail(@Path("userName") userName: String) : UserDetailDto

@@ -19,6 +19,7 @@ import com.example.githubclient.ui.userlist.state.UserListState
 fun UserListScreen(viewModel: UserListViewModel = hiltViewModel(), onUserClick: (String) -> Unit) {
 
     val uiState by viewModel.uiState.collectAsState()
+    val totalUserDisplayed by viewModel.totalUserDisplayed.collectAsState()
 
     Scaffold(
         topBar = {
@@ -45,7 +46,10 @@ fun UserListScreen(viewModel: UserListViewModel = hiltViewModel(), onUserClick: 
         ) {
             when (uiState) {
                 is UserListState.Loading -> LoadingScreen()
-                is UserListState.Success -> UserList(users = (uiState as UserListState.Success).users, onUserClick = onUserClick)
+                is UserListState.Success -> {
+                    val users = (uiState as UserListState.Success).users.take(totalUserDisplayed)
+                    UserList(users = users, onUserClick = onUserClick, onLoadMoreClick = { viewModel.loadMoreUsers() }, isLastPage = (viewModel.usersFetchLimit == totalUserDisplayed))
+                }
                 is UserListState.Error -> ErrorScreen(
                     message = (uiState as UserListState.Error).message,
                     onRetry = { viewModel.loadUsers() }

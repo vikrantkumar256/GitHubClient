@@ -5,7 +5,7 @@ import com.example.githubclient.domain.model.User
 import com.example.githubclient.domain.model.UserDetail
 
 interface UserRepository {
-    suspend fun getUsers() : List<User>
+    suspend fun getUsers(startId: Int, perPage: Int) : List<User>
     suspend fun getUserDetail(userName: String) : UserDetail
     suspend fun getUserRepos(userName: String) : List<Repo>
 }

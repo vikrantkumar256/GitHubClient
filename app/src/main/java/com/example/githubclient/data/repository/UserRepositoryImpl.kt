@@ -3,7 +3,6 @@ package com.example.githubclient.data.repository
 import com.example.githubclient.data.mapper.RepoMapper
 import com.example.githubclient.data.mapper.UserDetailMapper
 import com.example.githubclient.data.mapper.UserMapper
-import com.example.githubclient.data.model.UserDto
 import com.example.githubclient.data.remote.GitHubApiService
 import com.example.githubclient.domain.model.Repo
 import com.example.githubclient.domain.model.User
@@ -17,8 +16,8 @@ class UserRepositoryImpl @Inject constructor(
     private val userDetailMapper: UserDetailMapper,
     private val repoMapper: RepoMapper
 ) : UserRepository {
-    override suspend fun getUsers(): List<User> {
-        val userDtos = api.getUsers()
+    override suspend fun getUsers(startId: Int, perPage: Int): List<User> {
+        val userDtos = api.getUsers(startId, perPage)
         return userDtos.map { userMapper.toDomain(it) }
     }
 
@@ -30,7 +29,6 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun getUserRepos(userName: String): List<Repo> {
         val repoDtos = api.getUserRepos(userName = userName)
         val repos = repoDtos.map { repoMapper.toDomain(it) }
-        // sort the domain model based on (fork + stars)
         val sortedRepos = repos.sortedByDescending { it.forks + it.stars }
         return sortedRepos
     }

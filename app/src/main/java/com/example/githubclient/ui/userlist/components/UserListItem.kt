@@ -15,7 +15,7 @@ import coil3.compose.AsyncImage
 import com.example.githubclient.domain.model.User
 
 @Composable
-fun UserListItem(user: User, onClick: (String) -> Unit) {
+fun UserListItem(user: User, onClick: (String) -> Unit, isLastItem: Boolean, onLoadMoreClick: () -> Unit, showLoadMore: Boolean) {
     Card(
         onClick = { onClick(user.userName) },
         shape = RoundedCornerShape(16.dp),
@@ -55,6 +55,12 @@ fun UserListItem(user: User, onClick: (String) -> Unit) {
                     }
                 }
             }
+        }
+    }
+    if(isLastItem && showLoadMore)
+    {
+        Button(onClick = onLoadMoreClick, modifier = Modifier.padding(8.dp)) {
+            Text(text = "Load More")
         }
     }
 }
