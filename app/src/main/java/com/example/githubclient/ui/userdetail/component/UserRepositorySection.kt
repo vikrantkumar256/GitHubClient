@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Alignment
 import com.example.githubclient.R
 import com.example.githubclient.domain.model.Repo
+import com.example.githubclient.ui.theme.LightBlueGray
 import com.example.githubclient.util.getLanguageColor
 
 /**
@@ -51,6 +52,7 @@ fun RepositoryItem(repo: Repo) {
     val context = LocalContext.current
 
     Card(
+        elevation = CardDefaults.cardElevation(2.dp),
         shape = RoundedCornerShape(4.dp),
         colors = CardDefaults.cardColors(Color(0xFFE8EAF6)),
         modifier = Modifier
@@ -84,9 +86,12 @@ fun RepositoryItem(repo: Repo) {
                 Text(
                     text = "Public",
                     fontSize = 12.sp,
-                    color = Color(0xFF1A237E),
+                    color = Color.White,
                     modifier = Modifier
-                        .background(Color.LightGray, shape = RoundedCornerShape(8.dp))
+                        .background(
+                            MaterialTheme.colorScheme.primary,
+                            shape = RoundedCornerShape(8.dp)
+                        )
                         .padding(horizontal = 6.dp, vertical = 2.dp)
                 )
             }
