@@ -170,9 +170,10 @@ Click **File → Sync Project with Gradle Files**.
 
 ### Run the app using an emulator or physical device
 
-## Future Considerations
-- Implement authentication for GitHub account access.
+## Improvement Ideas and Functionality
+- Implement authentication for GitHub account access for Higher Rate Limit
 - Add pagination for large repository lists.
 - Integrate local storage for offline access.
 - Support dark mode for user customization.
+- Implement User Search Feature to explore more.
 
