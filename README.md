@@ -3,6 +3,12 @@
 ## Overview
 GitHubClient is a modern Android application that allows users to explore GitHub user profiles and repositories effortlessly. Built using Jetpack Compose, the app fetches data from the GitHub API to display a list of users, their detailed profiles, and top repository information with a clean and intuitive UI.
 
+## Functionality Demo Video
+https://github.com/user-attachments/assets/b8954c00-ab33-4b59-a857-f359d0197165
+
+## Error and Loading
+https://github.com/user-attachments/assets/db7426e3-43c9-4004-b9d9-fe374b0da6fb
+
 ## Key Features
 
 ### User List View
